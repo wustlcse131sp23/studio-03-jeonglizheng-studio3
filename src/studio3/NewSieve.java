@@ -18,22 +18,29 @@ public class NewSieve {
 			numbers[i] = i + 1;
 		}
 		
+		int position = 1;
 		int prime = 2;
-		
-		for (int i = 0; i < range; i++)
+		while (position < range/2)
 		{
-			for (int position = 3; position < range; position += prime)
+			for (int multiple = prime * 2 - 1; multiple < range; multiple += prime)
 			{
-				numbers[position] = 0;
+				numbers[multiple] = 0;
 
 			}
+			int move = 1;
+			while ((position + move) < range && numbers[position + move] == 0)
+			{
+				move++;
+			}
+			position += move;
+			prime = position + 1;
 		}
 		
 		
 		for (int number : numbers)
 		{
-			
-			System.out.print(number + " ");
+			if (number != 0 && number != 1)
+			System.out.println(number + " ");
 		}
 		
 	}
